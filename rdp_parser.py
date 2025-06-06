@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """
 ===============================================================================
 File name    : rdp_parser.py
@@ -28,11 +27,9 @@ import geoip2.database
 
 def get_geoip_info(reader, ip):
     try:
-        response = reader.city(ip)
+        response = reader.country(ip)
         country = response.country.iso_code or 'N/A'
-        city = response.city.name or 'N/A'
-        org = response.traits.organization or 'N/A'
-        return f"{country}, {city}, {org}"
+        return country
     except Exception as e:
         print(f"[GeoIP Lookup Failed] IP: {ip}, Reason: {e}")
         return "Unknown"
@@ -120,9 +117,9 @@ def write_csv_stats(ip_user_stats, output_path):
 # ------------------- Main Entry Point -------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="RDP EVTX log parser with GeoIP enrichment")
+    parser = argparse.ArgumentParser(description="RDP EVTX log parser with GeoIP (Country DB)")
     parser.add_argument("-i", "--input", required=True, help="Path to input .evtx file")
-    parser.add_argument("-g", "--geoip", default="GeoLite2-City.mmdb", help="Path to GeoIP DB file (default: GeoLite2-City.mmdb)")
+    parser.add_argument("-g", "--geoip", default="GeoLite2-Country.mmdb", help="Path to GeoIP Country DB (default: GeoLite2-Country.mmdb)")
     parser.add_argument("-o", "--output", default=".", help="Output directory (default: current directory)")
 
     args = parser.parse_args()

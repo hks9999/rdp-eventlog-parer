@@ -1,12 +1,7 @@
-========================================================================
 
 File name    : rdp_parser.py
+Description  : Parse RDP login events(Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx) from .evtx logs and enrich with GeoIP.
 
-Description  : Parse RDP login events from .evtx logs and enrich with GeoIP.
-
-Target : Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational
-
-========================================================================
 *Usage
 - rdp_parser.exe -i Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx
 - rdp_parser.py -i Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx
